@@ -24,8 +24,7 @@ include __DIR__ . '/../../includes/header.php';
                         </div>
                         <div>
                             <strong>Address</strong>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">123 Pet Lane, Animal
-                                City, AC 12345</p>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Kathmandu, Nepal</p>
                         </div>
                     </div>
 
@@ -81,11 +80,11 @@ include __DIR__ . '/../../includes/header.php';
                 <form action="#" method="POST">
                     <div class="form-group">
                         <label>Your Name</label>
-                        <input type="text" name="name" required placeholder="John Doe">
+                        <input type="text" name="name" required placeholder="Your Name">
                     </div>
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="email" name="email" required placeholder="john@example.com">
+                        <input type="email" name="email" required placeholder="yourname@example.com">
                     </div>
                     <div class="form-group">
                         <label>Subject</label>

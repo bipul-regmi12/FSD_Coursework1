@@ -2,10 +2,15 @@
 // config/db.php
 
 $host = 'localhost';
-$db = 'pet_adoption_db';
-$user = 'root'; 
-$pass = 'RootPassword123!';     
+$db = 'np03cs4a240282';
+$user = 'np03cs4a240282'; 
+$pass = '04a09vyPAh';     
 $charset = 'utf8mb4';
+
+// $user = 'root';
+// $pass = 'RootPassword123!';
+// $db = 'pet_adoption_db';
+
 
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
