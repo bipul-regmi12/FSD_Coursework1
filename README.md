@@ -49,7 +49,7 @@
 - **HTTP Security**: Implementation of security headers including `X-Frame-Options` and `X-Content-Type-Options`.
 
 ## Installation & Setup
-1. **Clone the Project**:
+1. **Clone the Project**:3x
    ```bash
    git clone <repository-url>
    cd Coursework
