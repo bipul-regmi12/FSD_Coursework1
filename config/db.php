@@ -37,9 +37,24 @@ try {
             password VARCHAR(255) NOT NULL,
             role ENUM('adopter', 'shelter') NOT NULL,
             full_name VARCHAR(255) NOT NULL,
+            profile_picture LONGBLOB,
+            phone VARCHAR(20),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     ");
+
+    // Ensure columns exist (for existing databases)
+    try {
+        $columns = $pdo->query("SHOW COLUMNS FROM users")->fetchAll(PDO::FETCH_COLUMN);
+        if (!in_array('profile_picture', $columns)) {
+            $pdo->exec("ALTER TABLE users ADD COLUMN profile_picture LONGBLOB AFTER full_name");
+        }
+        if (!in_array('phone', $columns)) {
+            $pdo->exec("ALTER TABLE users ADD COLUMN phone VARCHAR(20) AFTER profile_picture");
+        }
+    } catch (PDOException $e) {
+        // Silently fail if other errors
+    }
 
     // Extra Shelter Profile Data
     $pdo->exec("

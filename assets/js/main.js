@@ -27,6 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // User Profile Dropdown Toggle
+    const profileTrigger = document.getElementById('userProfileTrigger');
+    const userDropdown = document.getElementById('userDropdown');
+
+    if (profileTrigger && userDropdown) {
+        profileTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileTrigger.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('active');
+            }
+        });
+    }
+
     // Add subtle scroll reveal effect
     const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {

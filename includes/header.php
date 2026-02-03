@@ -54,13 +54,40 @@ require_once __DIR__ . '/../config/db.php';
 
                 <ul class="nav-links">
                     <li><a href="<?php echo $routeBase; ?>/pets/browse.php">Browse Pets</a></li>
-                    <?php if (isLoggedIn()): ?>
+                    <?php if (isLoggedIn()): 
+                        $currentUser = getCurrentUser();
+                    ?>
                         <?php if (getUserRole() === 'shelter'): ?>
                             <li><a href="<?php echo $routeBase; ?>/dashboard/shelter.php">Dashboard</a></li>
                         <?php else: ?>
                             <li><a href="<?php echo $routeBase; ?>/dashboard/adopter.php">My Applications</a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo $routeBase; ?>/auth/logout.php" class="btn btn-outline ">Logout</a></li>
+                        
+                        <li class="user-profile-dropdown">
+                            <div class="user-profile-trigger" id="userProfileTrigger">
+                                <?php if ($currentUser && $currentUser['profile_picture']): ?>
+                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($currentUser['profile_picture']); ?>" alt="Profile" class="user-avatar">
+                                <?php else: ?>
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                <?php endif; ?>
+                                <span class="user-name"><?php echo e($currentUser['full_name'] ?? 'User'); ?></span>
+                                <i class="fas fa-chevron-down" style="font-size: 0.7rem; color: var(--text-muted);"></i>
+                            </div>
+                            
+                            <div class="dropdown-menu" id="userDropdown">
+                                <a href="<?php echo $routeBase; ?>/auth/settings.php" class="dropdown-item">
+                                    <i class="fas fa-cog"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="<?php echo $routeBase; ?>/auth/logout.php" class="dropdown-item logout">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
                     <?php else: ?>
                         <li><a href="<?php echo $routeBase; ?>/auth/login.php">Login</a></li>
                         <li><a href="<?php echo $routeBase; ?>/auth/register.php" class="btn btn-outline ">Join Us</a></li>

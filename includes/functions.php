@@ -89,4 +89,15 @@ function isLoggedIn() {
 function getUserRole() {
     return $_SESSION['user_role'] ?? null;
 }
+/**
+ * Get current user data
+ */
+function getCurrentUser() {
+    global $pdo;
+    if (!isLoggedIn()) return null;
+    if (!isset($pdo)) return null;
+    $stmt = $pdo->prepare("SELECT id, email, full_name, role, profile_picture FROM users WHERE id = ?");
+    $stmt->execute([$_SESSION['user_id']]);
+    return $stmt->fetch();
+}
 ?>
